@@ -1,1 +1,104 @@
-Enter Phone Number Save & Continue
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SMS Setup</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 20px;
+      }
+
+      h2 {
+        margin-bottom: 30px;
+        font-size: 24px;
+        color: white;
+      }
+
+      input {
+        width: 100%;
+        max-width: 300px;
+        padding: 12px;
+        margin: 10px 0;
+        border: 1px solid #444;
+        border-radius: 8px;
+        background-color: #1c1c1c;
+        color: white;
+        font-size: 16px;
+      }
+
+      input::placeholder {
+        color: #aaa;
+      }
+
+      button {
+        width: 100%;
+        max-width: 300px;
+        padding: 12px;
+        background-color: #2196f3;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+      }
+
+      button:hover,
+      button:active {
+        background-color: #0b7dda;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Enter Phone Number</h2>
+
+      <input
+        type="text"
+        id="countryCode"
+        placeholder="Country Code (e.g. +66)"
+      />
+      <input
+        type="text"
+        id="phoneNumber"
+        placeholder="Phone Number (e.g. 812345678)"
+      />
+      <button onclick="saveNumber()">Save & Continue</button>
+    </div>
+
+    <script>
+      function saveNumber() {
+        const countryCode = document.getElementById("countryCode").value.trim();
+        const phoneNumber = document.getElementById("phoneNumber").value.trim();
+
+        if (!countryCode.startsWith("+") || phoneNumber.length < 6) {
+          alert("Please enter a valid country code and phone number.");
+          return;
+        }
+
+        const fullNumber = countryCode + phoneNumber;
+
+        localStorage.setItem("alertPhoneNumber", fullNumber);
+
+        window.location.href = "main.html";
+      }
+    </script>
+  </body>
+</html>
